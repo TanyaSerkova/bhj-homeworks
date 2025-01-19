@@ -3,24 +3,23 @@ const taskInput = document.getElementById('task__input');
 
 taskAdd.addEventListener('click', function(e) {
     e.preventDefault();
-    let task = document.createElement('div');
-    task.classList.add('task');
-    let taskTitle = document.createElement('div');
-    taskTitle.classList.add('task__title');
-    task.appendChild(taskTitle);
-    let taskRemove = document.createElement('a');
-    taskRemove.classList.add('task__remove');
-    taskRemove.innerHTML = '&times;';
-    taskRemove.setAttribute('href', '#');
-    task.appendChild(taskRemove);
+    if (taskInput.value.trim() == ''){
+    return
+    }
+
     const taskList = document.getElementById('tasks__list');
-    taskList.appendChild(task);
+    taskList.insertAdjacentHTML('afterbegin', `
+        <div class="task">
+          <div class="task__title">
+            ${taskInput.value}
+          </div>
+          <a href="#" class="task__remove">&times;</a>
+        </div>
+        `);
 
-    taskTitle.innerText = `${taskInput.value}`;
-    taskInput.value = '';
-
+    let taskRemove = document.querySelector('.task__remove');
     taskRemove.addEventListener('click', function(e){
         e.preventDefault();
-        taskList.removeChild(task);
+        taskList.removeChild(document.querySelector('.task'));
     })
 })

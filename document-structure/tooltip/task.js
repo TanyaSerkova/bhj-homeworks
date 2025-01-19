@@ -4,8 +4,8 @@ for (element of hasTooltips){
    let tooltip = document.createElement('div');
    tooltip.innerText = element.getAttribute('title');
    tooltip.classList.add('tooltip');
-   element.appendChild(tooltip);
-
+   element.insertAdjacentElement('afterEnd', tooltip);
+   
    const tooltipLeft = element.getBoundingClientRect().left;
    tooltip.style.left = tooltipLeft + 'px';
    tooltip.style.position = 'absolute';
@@ -19,6 +19,8 @@ for (element of hasTooltips){
             tooltipList[index].classList.remove('tooltip_active');
             }
         tooltip.classList.add('tooltip_active');
+        } else {
+            tooltip.classList.remove('tooltip_active');
         }
     })
 }
