@@ -4,6 +4,7 @@ const taskInput = document.getElementById('task__input');
 taskAdd.addEventListener('click', function(e) {
     e.preventDefault();
     if (taskInput.value.trim() == ''){
+        taskInput.value = '';
     return
     }
 
@@ -16,6 +17,7 @@ taskAdd.addEventListener('click', function(e) {
           <a href="#" class="task__remove">&times;</a>
         </div>
         `);
+        taskInput.value = '';
 
     let taskRemove = document.querySelector('.task__remove');
     taskRemove.addEventListener('click', function(e){
